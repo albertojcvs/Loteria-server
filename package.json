@@ -1,0 +1,8 @@
+{
+  "name": "Loteria-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/albertojcvs/Loteria-server.git",
+  "author": "Alberto José <49288213+albertojcvs@users.noreply.github.com>",
+  "license": "MIT"
+}
