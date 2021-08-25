@@ -1,0 +1,38 @@
+datasource db {
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        Int             @id @default(autoincrement())
+    createdAt DateTime        @default(now())
+    email     String          @unique
+    password  String
+    name      String
+    tickets   LotteryTicket[]
+}
+
+model LotteryDraw {
+    id            Int             @id @default(autoincrement())
+    createdAt     DateTime        @default(now())
+    drawNumber    Int             @unique
+    tickets       LotteryTicket[]
+    sortedNumbers Int[]
+    date          DateTime
+}
+
+model LotteryTicket {
+    id           Int         @id @default(autoincrement())
+    createdAt    DateTime    @default(now())
+    ticketNumber Int
+    owner        User        @relation(fields: [ownerId], references: [id])
+    ownerId      Int
+    drawNumber   Int
+    draw         LotteryDraw @relation(fields: [drawNumber], references: [id])
+    numbers      Int[]
+
+}
